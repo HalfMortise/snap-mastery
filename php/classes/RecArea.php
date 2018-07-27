@@ -44,6 +44,12 @@ class RecArea {
       $this->recAreaId = $uuid;
    }
 
+
+   //insert lat-long sum return here
+
+
+
+
    public function getRecAreaLat(): SplFloat {
       return ($this->recAreaLat);
    }
