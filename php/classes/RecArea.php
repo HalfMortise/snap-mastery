@@ -12,8 +12,6 @@ class RecArea {
 
    private $recAreaLat; //Float
 
-   private $recAreaLong; //Float
-
    private $recAreaName; //Varchar
 
    public function __construct($newRecAreaId, $newRecAreaLat, $newRecAreaLong, string $newRecAreaName) {
@@ -41,5 +39,10 @@ class RecArea {
 
 
 
+   function sum($a, $b): float {
+      return $a + $b;
+   }
 
+// Note that a float will be returned.
+var_dump(sum(1, 2));
 }
