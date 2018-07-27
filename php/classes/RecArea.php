@@ -22,8 +22,7 @@ class RecArea {
          $this->setRecAreaLat($newRecAreaLat);
          $this->setRecAreaLong($newRecAreaLong);
          $this->setRecAreaName($newRecAreaName);
-      }
-      //determine exception thrown
+      } //determine exception thrown
       catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
          $exceptionType = get_class($exception);
          throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -32,6 +31,17 @@ class RecArea {
 
    public function getRecAreaId(): Uuid {
       return ($this->recAreaId);
+   }
+
+   public function setRecAreaId($newRecAreaId): void {
+      try {
+         $uuid = self::validateUuid($newRecAreaId);
+      } catch(\InvalidArgumentException | \RangeException | \ Exception | \ TypeError $exception) {
+         $exceptionType = get_class($exception);
+         throw(new $exceptionType($exception->getMessage(), 0, $exception));
+      }
+      // convert and store the profile id
+      $this->recAreaId = $uuid;
    }
 
    public function getRecAreaLat(): SplFloat {
@@ -47,10 +57,22 @@ class RecArea {
       return ($this->recAreaName);
    }
 
-   function sum($recAreaLat, $recAreaLong): float {
-      return $recAreaLat + $recAreaLong;
-   }
+   public function setRecAreaName(string $newRecAreaName): void {
+      $newRecAreaName = trim($newRecAreaName);
+      $newRecAreaName = filter_var($newRecAreaName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+      if(empty($newRecAreaName) === true) {
+         throw(new \InvalidArgumentException("RecArea must have name"));
+      }
+
+      //convert and store the account name
+      $this->recAreaName = $newRecAreaName;
+
+
+      function sum($recAreaLat, $recAreaLong): float {
+         return $recAreaLat + $recAreaLong;
+      }
 
       // Return float
-      var_dump (sum(1, 2));
+      var_dump(sum(1, 2));
+   }
 }
