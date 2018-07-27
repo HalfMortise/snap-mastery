@@ -12,9 +12,11 @@ class RecArea {
 
    private $recAreaLat; //Float
 
+   private $recAreaLong; //Float
+
    private $recAreaName; //Varchar
 
-   public function __construct($newRecAreaId, $newRecAreaLat, $newRecAreaLong, string $newRecAreaName) {
+   public function __construct($newRecAreaId, float $newRecAreaLat, float $newRecAreaLong, string $newRecAreaName) {
       try {
          $this->setRecAreaId($newRecAreaId);
          $this->setRecAreaLat($newRecAreaLat);
@@ -29,20 +31,26 @@ class RecArea {
    }
 
    public function getRecAreaId(): Uuid {
-      return ($this->getRecAreaId);
+      return ($this->recAreaId);
    }
 
    public function getRecAreaLat(): SplFloat {
-      return ($this->getRecAreaLat);
+      return ($this->recAreaLat);
    }
 
 
-
-
-   function sum($a, $b): float {
-      return $a + $b;
+   public function getRecAreaLong(): SplFloat {
+      return ($this->recAreaLong);
    }
 
-// Note that a float will be returned.
-var_dump(sum(1, 2));
+   public function getRecAreaName(): String {
+      return ($this->recAreaName);
+   }
+
+   function sum($recAreaLat, $recAreaLong): float {
+      return $recAreaLat + $recAreaLong;
+   }
+
+      // Return float
+      var_dump (sum(1, 2));
 }
